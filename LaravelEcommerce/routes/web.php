@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\Auth\AuthenticationController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard')->middleware(['auth']);
+
+Route::prefix('admin')->group(function () {
+    Route::get('login',[AuthenticationController::class, 'showLoginForm'])->name('login');
+    Route::post('authenticate',[AuthenticationController::class, 'adminAuthenticate'])->name('authenticate');
 });
