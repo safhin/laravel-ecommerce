@@ -4,13 +4,18 @@
 <div class="login-box">
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
+      @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+          {{ $errors->first() }}
+        </div>
+      @endif
       <div class="card-header text-center">
-        <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+        <span class="h1">Admin Login</span>
       </div>
       <div class="card-body">
         <p class="login-box-msg">Sign in to start your session</p>
   
-        <form action="#" method="post">
+        <form action="{{ route('authenticate') }}" method="post">
           @csrf
           <div class="input-group mb-3">
             <input type="email" name="email" class="form-control" placeholder="Email">
