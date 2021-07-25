@@ -16,12 +16,11 @@ class IsAdmin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $guard = null)
     {
-        if(Auth::guard('admin')->check()){
+        if($guard == "admin" && Auth::guard($guard)->check()){
             return $next($request);
         }
-
         return redirect()->route('login')->withErrors(['This login is for admin only!']);
     }
 }

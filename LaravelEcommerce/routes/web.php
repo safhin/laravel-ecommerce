@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard')->middleware(['isAdmin']);
+Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard')->middleware(['isAdmin:admin']);
 
 Route::prefix('admin')->group(function () {
     Route::get('login',[AuthenticationController::class, 'showLoginForm'])->name('login');
