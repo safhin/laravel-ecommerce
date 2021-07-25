@@ -28,6 +28,7 @@ class AdminFactory extends Factory
             'email' => 'admin@gmail.com',
             'password' => Hash::make('asdf1234'),
             'remember_token' => Str::random(10),
+            'isAdmin' => 1,
         ];
     }
 }
